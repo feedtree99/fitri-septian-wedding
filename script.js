@@ -31,7 +31,17 @@ openButton.addEventListener("click", function () {
 
     videoElement.currentTime = 0;
     videoElement.playbackRate = 0.8;
-    videoElement.play();
+    videoElement.muted = true;
+    videoElement.setAttribute("muted", "");
+    videoElement.setAttribute("playsinline", "");
+
+videoElement.load();
+
+requestAnimationFrame(() => {
+    videoElement.play().catch(error => {
+        console.log("Video gagal autoplay:", error);
+    });
+});
 
     weddingGift.style.display = "flex";
     shareBlessing.style.display = "flex";
