@@ -28,10 +28,17 @@ openButton.addEventListener("click", function () {
     page6.style.display = "flex";
     page7.style.display = "flex";
     weddingVideo.style.display = "flex";
+
+    videoElement.currentTime = 0;
+    videoElement.playbackRate = 0.8;
+    videoElement.play();
+
     weddingGift.style.display = "flex";
     shareBlessing.style.display = "flex";
     countdownSection.style.display = "flex";
     thankYou.style.display = "flex";
+
+
 
     weddingMusic.play();
     musicToggle.classList.add("show");
