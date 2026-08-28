@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fitri & Septian</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- OPENING -->
+    <section class="opening">
+
+        <div class="opening-content">
+
+             <img src="images/opening.png" alt="Fitri & Septian">
+
+            <div class="opening-bottom">
+
+                <p>
+                    Dear<br>
+                    Penerima Undangan
+                </p>
+
+                <button id="openInvitation">
+                    Open Invitation
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION 2 -->
+<section class="page2" id="invitation">
+    <img src="images/page2.png" alt="Our Story">
+</section>
+
+<!-- SECTION 3 -->
+<section class="page3">
+    <img src="images/page3.png" alt="The Day">
+</section>
+
+<!-- SECTION 4 -->
+<section class="couple" id="couple">
+
+    <img src="images/bride.png" class="bride" alt="Fitri">
+
+    <img src="images/groom.png" class="groom" alt="Septian">
+    
+    <a href="https://www.instagram.com/ftrwlndr/" target="_blank" class="instagram-fitri"></a>
+
+    <a href="https://www.instagram.com/septiannudin/" target="_blank" class="instagram-septian"></a>
+
+</section>
+
+<!-- SECTION 5 -->
+<section class="page5">
+
+    <img src="images/amplop.png" class="page5-amplop">
+    <img src="images/tanggal.png" class="page5-tanggal">
+    <img src="images/lokasi.png" class="page5-lokasi">
+
+    <div class="maps-container">
+        <iframe
+            src="https://www.google.com/maps?q=Joglo+Kemandoran+Bekasi&output=embed"
+            loading="lazy"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <a
+        href="https://maps.app.goo.gl/spKhQtfd2Mvroywt7?g_st=ic"
+        target="_blank"
+        class="maps-button">
+        View on Google Maps
+    </a>
+
+</section>
+
+<!-- SECTION 6 - DRESS CODE -->
+
+<section class="page6">
+
+    <img src="images/dresscode.png" class="page6-dresscode">
+
+</section>
+
+<!-- SECTION 7 - LOVE STORY -->
+
+<section class="page7">
+
+    <img src="images/page7.png" class="page7-story">
+
+</section>
+
+<audio id="weddingMusic" loop>
+    <source src="audio/wedding-song.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicToggle" class="music-toggle">
+    ♫
+</button>
+
+<!-- WEDDING VIDEO -->
+
+<!-- WEDDING VIDEO -->
+
+<section class="wedding-video">
+
+    <video autoplay muted playsinline>
+        <source src="video/wedding-video.mp4" type="video/mp4">
+    </video>
+
+</section>
+
+<section class="wedding-gift">
+
+    <img src="images/wedding-gift.png" class="wedding-gift-image" alt="Wedding Gift">
+
+    <div class="bank-card">
+        <div class="bank-name">BCA</div>
+        <div class="account-number">6755514261</div>
+        <div class="account-holder">a/n Fitri Wulandari</div>
+
+        <button class="copy-account" onclick="copyAccount()">
+            Copy Account Number
+        </button>
+    </div>
+
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section">
+
+    <div class="countdown-title">
+        UNTIL OUR BIG DAY
+    </div>
+
+    <div class="countdown-items">
+
+        <div class="countdown-item">
+            <span id="countdownDays">00</span>
+            <small>Days</small>
+        </div>
+
+        <div class="countdown-divider"></div>
+
+        <div class="countdown-item">
+            <span id="countdownHours">00</span>
+            <small>Hours</small>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SECTION 9 - SHARE YOUR BLESSING -->
+<section class="share-blessing">
+
+    <img src="images/share-blessing.png"
+         class="share-blessing-image"
+         alt="Share Your Blessing">
+
+    <div class="blessing-form">
+
+        <input
+            type="text"
+            id="blessingName"
+            placeholder="Your Name"
+        >
+
+        <textarea
+            id="blessingMessage"
+            placeholder="Write your message..."
+        ></textarea>
+
+        <button type="button" class="send-blessing">
+            Send
+        </button>
+
+    </div>
+
+    <div class="blessing-list" id="blessingList"></div>
+
+</section>
+
+<!-- THANK YOU -->
+<section class="thank-you">
+    <img
+        src="images/thank-you.png"
+        class="thank-you-image"
+        alt="Thank You"
+    >
+</section>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

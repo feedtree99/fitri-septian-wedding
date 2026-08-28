@@ -1,0 +1,1038 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #e9e7e2;
+    color: #f4eee4;
+}
+
+
+/* =================================
+   OPENING / COVER
+================================= */
+
+.opening {
+    width: min(100%, 890px);
+
+    min-height: 180svh;
+
+    margin: 0 auto;
+
+    background: #212a15;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 0 0 0px 0px;
+    
+}
+
+
+/* =================================
+   CONTENT
+================================= */
+
+.opening-content {
+    width: 100%;
+    min-height: 180svh;
+
+    padding: 5px 5px 5px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    position: relative;
+}
+.opening-content img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* =================================
+   TOP METADATA
+================================= */
+
+.opening-top {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.opening-top span:nth-child(1) {
+    text-align: left;
+}
+
+.opening-top span:nth-child(2) {
+    text-align: center;
+}
+
+.opening-top span:nth-child(3) {
+    text-align: center;
+}
+
+.opening-top span:nth-child(4) {
+    text-align: right;
+}
+
+
+/* =================================
+   SIDE TEXT
+================================= */
+
+.side-text {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    writing-mode: vertical-rl;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.side-left {
+    left: 55px;
+
+    transform:
+        translateY(-50%)
+        rotate(180deg);
+}
+
+.side-right {
+    right: 55px;
+}
+
+
+/* =================================
+   NAMES
+================================= */
+
+.opening-center {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.opening h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(65px, 10vw, 125px);
+
+    font-weight: 400;
+
+    line-height: 0.85;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    text-transform: uppercase;
+}
+
+.opening h1 span {
+    display: block;
+
+    font-size: 0.4em;
+
+    line-height: 1;
+
+    margin: 25px 0;
+}
+
+
+/* =================================
+   BOTTOM INVITATION
+================================= */
+
+.opening-bottom {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 10px;
+}
+
+.opening-bottom p {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* =================================
+   BUTTON
+================================= */
+
+#openInvitation {
+    padding: 12px 25px;
+
+    border: 1px solid #f4eee4;
+
+    border-radius: 100px;
+
+    background: transparent;
+
+    color: #f4eee4;
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+#openInvitation:hover {
+    background: #f4eee4;
+
+    color: #a90d0d;
+}
+
+
+.page2 {
+    background-color: #ecebe7;
+    min-height: auto;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    box-sizing: border-box;
+}
+
+.page2 img {
+    width: 70%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+}
+
+.page3 {
+    background-color: #ecebe7;
+    min-height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0;
+    box-sizing: border-box;
+}
+
+.page3 img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.page3 img.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* SECTION 4 - COUPLE */
+
+.couple {
+    background-color: #ecebe7;
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.couple img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+}
+
+/* COUPLE ANIMATION */
+
+.bride {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.groom {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition: opacity 1s ease, transform 1s ease 0.25s;
+}
+
+.bride.show,
+.groom.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.couple {
+    position: relative;
+}
+
+.instagram-fitri,
+.instagram-septian {
+    position: absolute;
+    z-index: 20;
+    display: block;
+}
+
+/* @ftrwlndr */
+.instagram-fitri {
+    width: 90px;
+    height: 25px;
+    top: 31%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* @septiannudin */
+.instagram-septian {
+    width: 110px;
+    height: 25px;
+    top: 68%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* PAGE 5 */
+
+.page5 {
+    min-height: 100vh;
+    background-color: #212a15;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 30px;
+    box-sizing: border-box;
+}
+.page5-amplop {
+    width: 40%;
+    max-width: 250px;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.page5-tanggal {
+    width: 60%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.page5-lokasi {
+    width: 70%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+}
+
+/* PAGE 5 ANIMATION */
+
+.page5-amplop,
+.page5-tanggal,
+.page5-lokasi {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.page5-amplop.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page5-tanggal.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.25s;
+}
+
+.page5-lokasi.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+.maps-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 24px;
+    border: 1px solid #f1ebd0;
+    border-radius: 30px;
+    color: #f1ebd0;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.maps-container {
+    width: 90%;
+    max-width: 500px;
+    margin-top: 30px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.maps-container iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+    display: block;
+}
+/* PAGE 6 - DRESS CODE */
+
+.page6 {
+    min-height: auto;
+    background-color: #212a15;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.page6-dresscode {
+    width: 20%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.page6-dresscode.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* PAGE 7 - LOVE STORY */
+
+.page7 {
+    min-height: auto;
+    background-color: #212a15;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page7-story {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.page7-story.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.music-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #f5f0df;
+    border-radius: 50%;
+
+    background-color: #212a15;
+    color: #f5f0df;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.6s ease;
+}
+
+.music-toggle.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.wedding-video {
+    width: 100%;
+    background-color: #ecebe7;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 60px 0;
+}
+
+.wedding-video video {
+    width: 50%;
+    max-width: 600px;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    display: block;
+    object-fit: cover;
+}
+
+/* =========================
+   WEDDING GIFT
+========================= */
+
+.wedding-gift {
+  width: 100%;
+  background-color: #ecebe7;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 5px 10px;
+  box-sizing: border-box;
+}
+
+.wedding-gift-image {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto 30px;
+}
+
+.bank-card {
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  color: #3b4c28;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.bank-name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.account-number {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.account-holder {
+  font-size: 11px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.copy-account {
+  border: 1px solid #3b4c28;
+  background: #3b4c28;
+  color: #ecebe7;
+  padding: 7px 19px;
+  border-radius: 17px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+}
+
+/* =========================================
+   SHARE YOUR BLESSING
+   ========================================= */
+
+.share-blessing {
+    background-color: #ecebe7;
+    min-height: 100vh;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px 40px;
+    box-sizing: border-box;
+}
+
+.share-blessing-image {
+    width: 70%;
+    max-width: 350px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.blessing-form {
+    width: 70%;
+    max-width: 400px;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px 10px 15px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 1;
+}
+
+.blessing-form input,
+.blessing-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #3b4c28;
+    background: transparent;
+    padding: 12px 4px;
+    margin-bottom: 22px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    color: #3b4c28;
+    outline: none;
+}
+
+.blessing-form textarea {
+    min-height: 90px;
+    resize: none;
+}
+
+.blessing-form input::placeholder,
+.blessing-form textarea::placeholder {
+    color: #777;
+}
+
+.send-blessing {
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    padding: 13px;
+    background: #3b4c28;
+    color: #ffffff;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.blessing-list {
+    width: 82%;
+    max-width: 320px;
+    margin-top: 25px;
+
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    position: relative;
+    box-sizing: border-box;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.blessing-list::-webkit-scrollbar {
+    display: none;
+}
+
+.blessing-card {
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 12px 12px;
+    margin-bottom: 6px;
+
+    min-height: 60px;
+    box-sizing: border-box;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+.blessing-name {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3b4c28;
+    margin-bottom: 5px;
+}
+
+.blessing-message {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #555555;
+}
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+.countdown-section {
+    width: 100%;
+    background-color: #ecebe7;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.countdown-title {
+    font-family: "Helvetica Neue Bold", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: #3b4c28;
+    text-align: center;
+
+    margin-bottom: 22px;
+}
+
+.countdown-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.countdown-item {
+    min-width: 85px;
+    text-align: center;
+}
+
+.countdown-item span {
+    display: block;
+
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1;
+
+    color: #3b4c28;
+
+    margin-bottom: 7px;
+}
+
+.countdown-item small {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    color: #555555;
+}
+
+.countdown-divider {
+    width: 1px;
+    height: 38px;
+    background-color: rgba(59, 76, 40, 0.3);
+}
+/* =========================================
+   THANK YOU
+========================================= */
+
+.thank-you {
+    width: 100%;
+    position: relative;
+    background-color: #ecebe7;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.thank-you-image {
+    width: 100%;
+    height: auto;
+    display: block;
+
+     transform: translateY(100px);
+    opacity: 0;
+
+    transition:
+        transform 1.2s ease-out,
+        opacity 1.2s ease-out;
+}
+
+.thank-you-image.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.swipe-up {
+    position: absolute;
+    bottom: 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #ffffff;
+
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+.swipe-arrow {
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 10px;
+
+    animation: swipeUp 1.5s ease-in-out infinite;
+}
+
+@keyframes swipeUp {
+    0% {
+        transform: translateY(8px);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(8px);
+        opacity: 0.4;
+    }
+}
+
+
+/* ================================
+   MOBILE FINAL OVERRIDE
+================================ */
+
+@media (max-width: 767px) {
+
+    .opening {
+        min-height: 100svh;
+    }
+
+    .opening-content {
+        min-height: 100svh;
+        justify-content: center;
+    }
+
+    .opening-bottom {
+        margin-top: 30px;
+    }
+
+    .page2 {
+        min-height: 0;
+        padding: 30px;
+    }
+
+    .page2 img {
+        width: 70%;
+        max-width: 500px;
+    }
+    
+
+    .page3 {
+        min-height: 0;
+        padding: 20px;
+
+    }
+
+    .couple {
+        min-height: 0;
+        padding: 20px;
+    }
+
+    .couple img {
+        width: 80%;
+        max-width: 500px;
+    }
+
+    .page5 {
+        min-height: 0;
+        padding: 40px 20px;
+    }
+
+        .page6 {
+        min-height: auto;
+        padding: 0;
+    }
+
+    .page6-dresscode {
+        width: 40%;
+        max-width: 600px;
+    }
+
+    .wedding-video {
+        padding: 10px 0;
+    }
+
+    .wedding-video video {
+        width: 55%;
+        max-width: none;
+        height: auto;
+    }
+
+    .wedding-gift {
+        padding: 20px 10px 10px;
+    }
+
+    .wedding-gift-image {
+        width: 100%;
+        max-width: 280px;
+        margin-bottom: 10px;
+    }
+
+    .bank-card {
+        width: 100%;
+    }
+
+    @media (max-width: 600px) {
+
+    .blessing-image {
+        width: 50%;
+       
+    }
+
+        .blessing-form {
+        width: 75%;
+        max-width: 330px;
+        padding: 10px 10px 10px;
+        border-radius: 8px;
+    }
+
+    .blessing-form input,
+    .blessing-form textarea {
+        font-size: 12px;
+        padding: 8px 5px;
+        margin-bottom: 12px;
+    }
+
+    .blessing-form textarea {
+        min-height: 50px;
+        height: 50px;
+    }
+
+    .send-blessing {
+        padding: 11px;
+        font-size: 12px;
+    }
+}
+.countdown-section {
+    padding: 25px 20px 30px;
+}
+
+.countdown-title {
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.countdown-item {
+    min-width: 75px;
+}
+
+.countdown-item span {
+    font-size: 27px;
+    margin-bottom: 6px;
+}
+
+.countdown-item small {
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.countdown-divider {
+    height: 32px;
+}
+
+/* =========================================
+   THANK YOU - MOBILE
+========================================= */
+
+.thank-you {
+    width: 100%;
+}
+
+.thank-you-image {
+    width: 100%;
+    height: auto;
+}
+
+.swipe-up {
+    bottom: 25px;
+    font-size: 8px;
+    letter-spacing: 3px;
+}
+
+.swipe-arrow {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+}
