@@ -30,7 +30,7 @@ openButton.addEventListener("click", function () {
     weddingVideo.style.display = "flex";
 
     videoElement.currentTime = 0;
-    videoElement.playbackRate = 0.8;
+    videoElement.playbackRate = 0.6;
     videoElement.muted = true;
     videoElement.setAttribute("muted", "");
     videoElement.setAttribute("playsinline", "");
