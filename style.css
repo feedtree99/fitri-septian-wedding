@@ -1036,18 +1036,8 @@ body {
     margin-bottom: 8px;
 }
 
-/* =========================================
-   FORCE LIGHT MODE
-========================================= */
-
-html,
-body {
-    color-scheme: light;
+img {
+    color-scheme: only light;
 }
 
-input,
-textarea,
-button {
-    color-scheme: light;
-}
 }

@@ -50,6 +50,7 @@ requestAnimationFrame(() => {
 
 
 
+
     weddingMusic.play();
     musicToggle.classList.add("show");
     invitation.scrollIntoView({
@@ -200,7 +201,7 @@ function copyAccount() {
   }, 2000);
 }
 
-   // GOOGLE SHEETS
+// GOOGLE SHEETS
 const scriptURL = "https://script.google.com/macros/s/AKfycbyaGL0lcUflYG03GurcNJQoXl66DAo18IM7bHI3lIRWcKHaZzRGpNY3UftGatUcyZ-y/exec";
 
 const sendBlessing = document.querySelector(".send-blessing");
@@ -223,32 +224,77 @@ sendBlessing.addEventListener("click", function () {
         })
     })
 
-.then(() => {
+    .then(() => {
 
-    alert("Thank you for your blessing! ♡");
+        alert("Thank you for your blessing! ♡");
 
-    document.getElementById("blessingName").value = "";
-    document.getElementById("blessingMessage").value = "";
+        document.getElementById("blessingName").value = "";
+        document.getElementById("blessingMessage").value = "";
 
-    setTimeout(function () {
-        loadBlessings();
-    }, 1500);
+        setTimeout(function () {
+            loadBlessings();
+        }, 1500);
 
-})
-.catch(error => {
+    })
 
-    console.error(error);
+    .catch(error => {
 
-    setTimeout(function () {
-        loadBlessings();
-    }, 1500);
+        console.error(error);
+
+        setTimeout(function () {
+            loadBlessings();
+        }, 1500);
+
+    });
 
 });
 
-});
+
+function loadBlessings() {
+
+    fetch(scriptURL)
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            const blessingList = document.getElementById("blessingList");
+
+            blessingList.innerHTML = "";
+
+            data.reverse().forEach(blessing => {
+
+                const card = document.createElement("div");
+                card.className = "blessing-card";
+
+                const name = document.createElement("div");
+                name.className = "blessing-name";
+                name.textContent = blessing.name;
+
+                const message = document.createElement("div");
+                message.className = "blessing-message";
+                message.textContent = blessing.message;
+
+                card.appendChild(name);
+                card.appendChild(message);
+
+                blessingList.appendChild(card);
+
+            });
+
+        })
+
+        .catch(error => {
+            console.error("Error loading blessings:", error);
+        });
+
+}
+
 
 loadBlessings();
 
+
+// COUNTDOWN
 // COUNTDOWN
 
 const countdownDate = new Date(2026, 11, 13, 0, 0, 0).getTime();
