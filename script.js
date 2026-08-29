@@ -205,7 +205,7 @@ const scriptURL = "https://script.google.com/macros/s/AKfycbyaGL0lcUflYG03GurcNJ
 
 const sendBlessing = document.querySelector(".send-blessing");
 
-sendBlessing.addEventListener("click", async function () {
+sendBlessing.addEventListener("click", function () {
 
     const name = document.getElementById("blessingName").value.trim();
     const message = document.getElementById("blessingMessage").value.trim();
@@ -214,64 +214,38 @@ sendBlessing.addEventListener("click", async function () {
         alert("Please fill in your name and message.");
         return;
     }
-try {
-    const response = await fetch(scriptURL, {
+
+    fetch(scriptURL, {
         method: "POST",
         body: JSON.stringify({
             name: name,
             message: message
         })
-    });
+    })
 
-    const data = await response.json();
+.then(() => {
 
-    if (data.status === "success") {
-        alert("Thank you for your blessing! ♡");
+    alert("Thank you for your blessing! ♡");
 
-        document.getElementById("blessingName").value = "";
-        document.getElementById("blessingMessage").value = "";
+    document.getElementById("blessingName").value = "";
+    document.getElementById("blessingMessage").value = "";
 
-        // INI YANG PENTING
-        await loadBlessings();
-    }
+    setTimeout(function () {
+        loadBlessings();
+    }, 1500);
 
-} catch (error) {
+})
+.catch(error => {
+
     console.error(error);
-    alert("Something went wrong. Please try again.");
-}
-    });
 
-function loadBlessings() {
-    fetch(scriptURL + "?t=" + Date.now())
-        .then(response => response.json())
-        .then(data => {
+    setTimeout(function () {
+        loadBlessings();
+    }, 1500);
 
-            const blessingList = document.getElementById("blessingList");
+});
 
-            blessingList.innerHTML = "";
-
-            data.reverse().forEach(blessing => {
-
-                const card = document.createElement("div");
-                card.className = "blessing-card";
-
-                card.innerHTML = `
-                    <div class="blessing-name">${blessing.name}</div>
-                    <div class="blessing-message">${blessing.message}</div>
-                `;
-
-                blessingList.appendChild(card);
-            });
-
-            startBlessingSlider();
-
-        })
-        .catch(error => {
-            console.error("Error loading blessings:", error);
-        });
-}
-
-
+});
 
 loadBlessings();
 

@@ -1052,3 +1052,55 @@ button {
 }
 
 }
+/* =========================================
+   DARK MODE FIX
+   Keep wedding design in original colors
+========================================= */
+
+@media (prefers-color-scheme: dark) {
+
+    html,
+    body {
+        background: #e9e7e2;
+        color: #f4eee4;
+        color-scheme: light;
+    }
+
+    .page2,
+    .page3,
+    .wedding-video,
+    .wedding-gift,
+    .share-blessing,
+    .countdown-section,
+    .thank-you {
+        background-color: #ecebe7;
+    }
+
+    .blessing-form {
+        background: #ffffff;
+    }
+
+    .blessing-form input,
+    .blessing-form textarea {
+        background: transparent;
+        color: #3b4c28;
+    }
+
+    .blessing-form input::placeholder,
+    .blessing-form textarea::placeholder {
+        color: #777;
+    }
+
+    .blessing-card {
+        background: #ffffff;
+    }
+
+    .blessing-name {
+        color: #3b4c28;
+    }
+
+    .blessing-message {
+        color: #555555;
+    }
+
+}
