@@ -1036,8 +1036,23 @@ body {
     margin-bottom: 8px;
 }
 
+}
+
 img {
     color-scheme: only light;
 }
 
+@media (prefers-color-scheme: dark) {
+    html {
+        color-scheme: light;
+    }
+
+    body {
+        background: #e9e7e2 !important;
+    }
+
+    img {
+        filter: none !important;
+        mix-blend-mode: normal !important;
+    }
 }
