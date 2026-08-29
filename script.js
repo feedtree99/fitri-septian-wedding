@@ -205,7 +205,7 @@ const scriptURL = "https://script.google.com/macros/s/AKfycbyaGL0lcUflYG03GurcNJ
 
 const sendBlessing = document.querySelector(".send-blessing");
 
-sendBlessing.addEventListener("click", function () {
+sendBlessing.addEventListener("click", async function () {
 
     const name = document.getElementById("blessingName").value.trim();
     const message = document.getElementById("blessingMessage").value.trim();
@@ -214,40 +214,35 @@ sendBlessing.addEventListener("click", function () {
         alert("Please fill in your name and message.");
         return;
     }
-
-    fetch(scriptURL, {
+try {
+    const response = await fetch(scriptURL, {
         method: "POST",
         body: JSON.stringify({
             name: name,
-            message: message,
-    
+            message: message
         })
-    })
-    .then(response => response.json())
-    .then(data => {
-
-        if (data.status === "success") {
-            alert("Thank you for your blessing! ♡");
-
-            document.getElementById("blessingName").value = "";
-            document.getElementById("blessingMessage").value = "";
-
-            stickers.forEach(function (item) {
-                item.classList.remove("selected");
-            });
-
-            selectedSticker = "";
-        }
-
-    })
-    .catch(error => {
-        console.error(error);
-        alert("Something went wrong. Please try again.");
     });
+
+    const data = await response.json();
+
+    if (data.status === "success") {
+        alert("Thank you for your blessing! ♡");
+
+        document.getElementById("blessingName").value = "";
+        document.getElementById("blessingMessage").value = "";
+
+        // INI YANG PENTING
+        await loadBlessings();
+    }
+
+} catch (error) {
+    console.error(error);
+    alert("Something went wrong. Please try again.");
+}
     });
 
 function loadBlessings() {
-    fetch(scriptURL)
+    fetch(scriptURL + "?t=" + Date.now())
         .then(response => response.json())
         .then(data => {
 

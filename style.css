@@ -6,6 +6,7 @@
 
 html {
     scroll-behavior: smooth;
+    color-scheme: light;
 }
 
 body {
@@ -1033,6 +1034,21 @@ body {
 .swipe-arrow {
     font-size: 20px;
     margin-bottom: 8px;
+}
+
+/* =========================================
+   FORCE LIGHT MODE
+========================================= */
+
+html,
+body {
+    color-scheme: light;
+}
+
+input,
+textarea,
+button {
+    color-scheme: light;
 }
 
 }
