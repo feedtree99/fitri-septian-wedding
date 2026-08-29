@@ -1043,7 +1043,23 @@ button {
 
 }
 
-img {
-    color-scheme: only light;
-}
+@media (prefers-color-scheme: dark) {
+    html,
+    body,
+    .page2,
+    .page3,
+    .couple,
+    .wedding-video,
+    .wedding-gift,
+    .share-blessing,
+    .countdown-section,
+    .thank-you {
+        background-color: #ecebe7 !important;
+        color: #3b4c28 !important;
+    }
 
+    .blessing-form,
+    .blessing-card {
+        background-color: #ffffff !important;
+    }
+}
