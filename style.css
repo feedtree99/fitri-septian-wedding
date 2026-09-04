@@ -191,7 +191,13 @@ body {
 
     gap: 20px;
 
-    padding-bottom: 10px;
+    padding: 15px 15px 15px;
+
+    background-image: url("images/greenbg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     color: #f4eee4;
     -webkit-text-fill-color: #f4eee4;
 }
@@ -356,14 +362,25 @@ body {
 
 .page5 {
     min-height: 100vh;
-    background-color: #212a15;
+
+    background-image: url("images/greenbg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display: none;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
+
     padding: 20px 10px;
+
     box-sizing: border-box;
 }
+
 .page5-amplop {
     width: 100%;
     max-width: 500px;
@@ -549,13 +566,24 @@ body {
 ========================= */
 
 .wedding-gift {
+
   width: 100%;
-  background-color: #ecebe7;
+
+  background-image: url("images/cream-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   display: none;
+
   flex-direction: column;
+
   align-items: center;
+
   padding: 0px 5px 0px;
+
   box-sizing: border-box;
+
 }
 
 .wedding-gift-image {
@@ -612,13 +640,24 @@ body {
    ========================================= */
 
 .share-blessing {
-    background-color: #ecebe7;
+
+    background-image: url("images/cream-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     min-height: 100vh;
+
     width: 100%;
+
     display: none;
+
     flex-direction: column;
+
     align-items: center;
+
     padding: 0px 0px 0px;
+
     box-sizing: border-box;
 }
 
@@ -733,7 +772,11 @@ body {
 
 .countdown-section {
     width: 100%;
-    background-color: #ecebe7;
+
+    background-image: url("images/cream-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     display: none;
     flex-direction: column;
