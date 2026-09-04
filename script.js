@@ -189,16 +189,14 @@ const weddingVideoObserver = new IntersectionObserver(
 
 weddingVideoObserver.observe(weddingVideo);
 
-function copyAccount() {
-  navigator.clipboard.writeText("6755514261");
+function copyAccount(accountNumber, button) {
+    navigator.clipboard.writeText(accountNumber);
 
-  const button = document.querySelector(".copy-account");
+    button.textContent = "Copied!";
 
-  button.textContent = "Copied!";
-
-  setTimeout(function () {
-    button.textContent = "Copy Account Number";
-  }, 2000);
+    setTimeout(function () {
+        button.textContent = "Copy Account Number";
+    }, 2000);
 }
 
 // GOOGLE SHEETS

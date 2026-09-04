@@ -448,13 +448,12 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
-    padding: 10px 0;
+    padding: 0% 0;
     box-sizing: border-box;
 }
 
 .page6-dresscode {
     width: 100%;
-    max-width: 600px;
     height: auto;
     display: block;
 
@@ -555,7 +554,7 @@ body {
   display: none;
   flex-direction: column;
   align-items: center;
-  padding: 20px 5px 10px;
+  padding: 0px 5px 0px;
   box-sizing: border-box;
 }
 
@@ -578,14 +577,14 @@ body {
 .bank-name {
   font-size: 14px;
   font-weight: 500;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .account-number {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 1px;
-  margin-bottom: 2px;
+  margin-bottom: 0px;
 }
 
 .account-holder {
@@ -599,6 +598,7 @@ body {
   background: #3b4c28;
   color: #ecebe7;
   padding: 7px 19px;
+  margin-bottom: 20px;
   border-radius: 17px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
@@ -618,13 +618,12 @@ body {
     display: none;
     flex-direction: column;
     align-items: center;
-    padding: 10px 20px 40px;
+    padding: 0px 0px 0px;
     box-sizing: border-box;
 }
 
 .share-blessing-image {
-    width: 70%;
-    max-width: 350px;
+    width: 100%;
     height: auto;
     display: block;
     margin-bottom: 10px;
@@ -897,13 +896,12 @@ body {
 
     .page2 img {
         width: 100%;
-        max-width: 500px;
     }
     
 
     .page3 {
         min-height: 0;
-        padding: 20px;
+        padding: 0px;
 
     }
 
@@ -919,7 +917,7 @@ body {
 
     .page5 {
         min-height: 0;
-        padding: 40px 20px;
+        padding: 40px 0px;
     }
 
         .page6 {
@@ -929,7 +927,6 @@ body {
 
     .page6-dresscode {
         width: 100%;
-        max-width: 500px;
     }
 
     .wedding-video {
@@ -943,12 +940,11 @@ body {
     }
 
     .wedding-gift {
-        padding: 20px 10px 10px;
+        padding: 0px 0px 0px;
     }
 
     .wedding-gift-image {
         width: 100%;
-        max-width: 280px;
         margin-bottom: 10px;
     }
 
@@ -988,7 +984,7 @@ body {
     }
 }
 .countdown-section {
-    padding: 25px 20px 30px;
+    padding: 0px 0px 0px;
 }
 
 .countdown-title {
