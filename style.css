@@ -582,18 +582,23 @@ body {
 }
 .wedding-gift-image {
   width: 100%;
-  max-width: 320px;
   height: auto;
   display: block;
   margin: 0 auto 30px;
 }
 
 .bank-card {
-  width: 100%;
-  max-width: 360px;
-  text-align: center;
-  color: #3b4c28;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+    text-align: center;
+    color: #3b4c28;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    background-image: url("images/cream-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 10px 0;
 }
 
 .bank-name {
