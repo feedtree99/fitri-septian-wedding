@@ -566,26 +566,20 @@ body {
 ========================= */
 
 .wedding-gift {
+    width: 100%;
 
-  width: 100%;
+    background-image: url("images/cream-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-  background-image: url("images/cream-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    display: none;
+    flex-direction: column;
+    align-items: center;
 
-  display: none;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  padding: 0px 5px 0px;
-
-  box-sizing: border-box;
-
+    padding: 0px 0px 0px;
+    box-sizing: border-box;
 }
-
 .wedding-gift-image {
   width: 100%;
   max-width: 320px;
