@@ -19,8 +19,7 @@ body {
 ================================= */
 
 .opening {
-    width: 100%;
-
+    width: min(100%, 890px);
     min-height: 180svh;
 
     margin: 0 auto;
@@ -28,11 +27,9 @@ body {
     background: #212a15;
 
     position: relative;
-
     overflow: hidden;
 
-    border-radius: 0 0 0px 0px;
-    
+    box-sizing: border-box;
 }
 
 
@@ -44,18 +41,18 @@ body {
     width: 100%;
     min-height: 180svh;
 
-    padding: 5px 5px 5px;
+    padding: 5px;
+
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
-
     justify-content: space-between;
-
     position: relative;
 }
+
 .opening-content img {
     width: 100%;
-    max-width: 600px;
     height: auto;
     display: block;
     margin: 0 auto;
