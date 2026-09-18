@@ -43,7 +43,9 @@ if (openButton) {
 
     openButton.addEventListener("click", function () {
 
-        invitation.style.display = "flex";
+        if (invitation) {
+            invitation.style.display = "flex";
+        }
 
         if (page3) page3.style.display = "flex";
         if (page5) page5.style.display = "flex";
@@ -98,25 +100,16 @@ if (openButton) {
 
 
         /* =====================================
-           PRELOAD BLESSINGS
-           
-           Mulai ambil komentar setelah
-           invitation dibuka supaya saat user
-           sampai ke bawah, komentar sudah siap.
-        ===================================== */
-
-        setTimeout(function () {
-            loadBlessings();
-        }, 500);
-
-
-        /* =====================================
            SCROLL
         ===================================== */
 
-        invitation.scrollIntoView({
-            behavior: "smooth"
-        });
+        if (invitation) {
+
+            invitation.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
 
     });
 
@@ -137,7 +130,6 @@ if (page3Image) {
                 if (entry.isIntersecting) {
 
                     page3Image.classList.add("show");
-
                     observer.unobserve(page3Image);
 
                 }
@@ -169,7 +161,6 @@ if (page3 && couple) {
                 if (entry.isIntersecting) {
 
                     couple.style.display = "flex";
-
                     page3Observer.unobserve(page3);
 
                 }
@@ -201,7 +192,6 @@ if (bride && groom) {
                 if (entry.isIntersecting) {
 
                     entry.target.classList.add("show");
-
                     coupleObserver.unobserve(entry.target);
 
                 }
@@ -268,7 +258,6 @@ if (page6 && page6Dresscode) {
                 if (entry.isIntersecting) {
 
                     page6Dresscode.classList.add("show");
-
                     page6Observer.unobserve(page6);
 
                 }
@@ -300,7 +289,6 @@ if (page7 && page7Story) {
                 if (entry.isIntersecting) {
 
                     page7Story.classList.add("show");
-
                     page7Observer.unobserve(page7);
 
                 }
@@ -395,9 +383,7 @@ function copyAccount(accountNumber, button) {
             button.textContent = "Copied!";
 
             setTimeout(function () {
-
                 button.textContent = "Copy Account Number";
-
             }, 2000);
 
         })
@@ -455,9 +441,7 @@ function copyAddress(button) {
             button.textContent = "Copied!";
 
             setTimeout(function () {
-
                 button.textContent = "Copy Address";
-
             }, 2000);
 
         })
@@ -470,10 +454,9 @@ function copyAddress(button) {
 }
 
 
-/* =========================================
-   GOOGLE SHEETS
-   SHARE YOUR BLESSING
-========================================= */
+// =========================================
+// SHARE YOUR BLESSING - GOOGLE SHEETS
+// =========================================
 
 const scriptURL =
     "https://script.google.com/macros/s/AKfycbyaGL0lcUflYG03GurcNJQoXl66DAo18IM7bHI3lIRWcKHaZzRGpNY3UftGatUcyZ-y/exec";
@@ -483,40 +466,68 @@ const blessingName = document.getElementById("blessingName");
 const blessingMessage = document.getElementById("blessingMessage");
 const blessingList = document.getElementById("blessingList");
 
-let blessingsLoaded = false;
-let blessingsLoading = false;
-let blessingSending = false;
+const BLESSING_CACHE = "fitriSeptianBlessings";
 
 
-/* =========================================
-   LOAD BLESSINGS
-========================================= */
+// =========================================
+// RENDER BLESSINGS
+// =========================================
 
-async function loadBlessings(forceReload = false) {
+function renderBlessings(data) {
 
     if (!blessingList) return;
 
-    /* Jangan fetch berulang kalau sudah ada */
-    if (blessingsLoaded && !forceReload) {
+    if (!Array.isArray(data) || data.length === 0) {
+
+        blessingList.innerHTML = `
+            <div class="no-blessing">
+                No messages yet ♡
+            </div>
+        `;
+
         return;
     }
 
-    /* Jangan menjalankan 2 request bersamaan */
-    if (blessingsLoading) {
-        return;
-    }
+    const fragment = document.createDocumentFragment();
 
-    blessingsLoading = true;
+    [...data].reverse().forEach(function (blessing) {
+
+        const card = document.createElement("div");
+        card.className = "blessing-card";
+
+        const name = document.createElement("div");
+        name.className = "blessing-name";
+        name.textContent = blessing.name || "";
+
+        const message = document.createElement("div");
+        message.className = "blessing-message";
+        message.textContent = blessing.message || "";
+
+        card.appendChild(name);
+        card.appendChild(message);
+
+        fragment.appendChild(card);
+
+    });
+
+    blessingList.innerHTML = "";
+    blessingList.appendChild(fragment);
+
+}
+
+
+// =========================================
+// LOAD FROM GOOGLE SHEETS
+// =========================================
+
+async function loadBlessings() {
 
     try {
 
-        const response = await fetch(
-            scriptURL,
-            {
-                method: "GET",
-                cache: "no-store"
-            }
-        );
+        const response = await fetch(scriptURL, {
+            method: "GET",
+            cache: "no-store"
+        });
 
         if (!response.ok) {
             throw new Error("Failed to load blessings");
@@ -524,232 +535,207 @@ async function loadBlessings(forceReload = false) {
 
         const data = await response.json();
 
-
-        /*
-         * Buat semua card terlebih dahulu.
-         * Jadi komentar lama tidak langsung
-         * dihapus ketika request sedang berjalan.
-         */
-
-        const fragment = document.createDocumentFragment();
-
-        if (Array.isArray(data)) {
-
-            data
-                .slice()
-                .reverse()
-                .forEach(function (blessing) {
-
-                    const card = document.createElement("div");
-                    card.className = "blessing-card";
-
-                    const name = document.createElement("div");
-                    name.className = "blessing-name";
-                    name.textContent = blessing.name || "";
-
-                    const message = document.createElement("div");
-                    message.className = "blessing-message";
-                    message.textContent = blessing.message || "";
-
-                    card.appendChild(name);
-                    card.appendChild(message);
-
-                    fragment.appendChild(card);
-
-                });
-
+        if (!Array.isArray(data)) {
+            return;
         }
 
+        // Simpan ke cache browser
+        localStorage.setItem(
+            BLESSING_CACHE,
+            JSON.stringify(data)
+        );
 
-        /*
-         * Baru replace isi setelah data
-         * berhasil diterima.
-         */
-
-        blessingList.innerHTML = "";
-        blessingList.appendChild(fragment);
-
-        blessingsLoaded = true;
+        // Render
+        renderBlessings(data);
 
     } catch (error) {
 
-        console.error("Error loading blessings:", error);
-
-    } finally {
-
-        blessingsLoading = false;
+        console.error(
+            "Error loading blessings:",
+            error
+        );
 
     }
 
 }
 
 
-/* =========================================
-   PRELOAD BLESSINGS
-========================================= */
+// =========================================
+// SHOW CACHED BLESSINGS IMMEDIATELY
+// =========================================
 
-if (shareBlessing) {
+function loadCachedBlessings() {
 
-    const blessingObserver = new IntersectionObserver(
-        function (entries) {
+    try {
 
-            entries.forEach(function (entry) {
+        const cached =
+            localStorage.getItem(BLESSING_CACHE);
 
-                if (entry.isIntersecting) {
+        if (!cached) return;
 
+        const data = JSON.parse(cached);
+
+        renderBlessings(data);
+
+    } catch (error) {
+
+        console.error(
+            "Error loading cached blessings:",
+            error
+        );
+
+    }
+
+}
+
+
+// =========================================
+// SEND BLESSING
+// =========================================
+
+if (sendBlessing) {
+
+    sendBlessing.addEventListener(
+        "click",
+        function () {
+
+            const name =
+                blessingName.value.trim();
+
+            const message =
+                blessingMessage.value.trim();
+
+
+            if (!name || !message) {
+
+                alert(
+                    "Please fill in your name and message."
+                );
+
+                return;
+
+            }
+
+
+            // Disable supaya tidak double click
+            sendBlessing.disabled = true;
+            sendBlessing.textContent = "Sending...";
+
+
+            // Simpan isi sebelum form dikosongkan
+            const newBlessing = {
+                name: name,
+                message: message
+            };
+
+
+            // =================================
+            // TAMPILKAN LANGSUNG DI LIST
+            // =================================
+
+            const cached =
+                localStorage.getItem(BLESSING_CACHE);
+
+            let currentBlessings = [];
+
+            try {
+
+                currentBlessings =
+                    cached
+                        ? JSON.parse(cached)
+                        : [];
+
+            } catch (error) {
+
+                currentBlessings = [];
+
+            }
+
+
+            currentBlessings.push(newBlessing);
+
+            localStorage.setItem(
+                BLESSING_CACHE,
+                JSON.stringify(currentBlessings)
+            );
+
+
+            // Render langsung
+            renderBlessings(currentBlessings);
+
+
+            // Kosongkan form
+            blessingName.value = "";
+            blessingMessage.value = "";
+
+
+            // =================================
+            // KIRIM KE GOOGLE DI BACKGROUND
+            // =================================
+
+            fetch(scriptURL, {
+
+                method: "POST",
+
+                body: JSON.stringify({
+                    name: name,
+                    message: message
+                })
+
+            })
+
+            .then(function () {
+
+                console.log(
+                    "Blessing successfully sent."
+                );
+
+                // Ambil data terbaru
+                setTimeout(function () {
                     loadBlessings();
+                }, 1500);
 
-                    blessingObserver.unobserve(shareBlessing);
+            })
 
-                }
+            .catch(function (error) {
+
+                console.error(
+                    "Error sending blessing:",
+                    error
+                );
 
             });
 
-        },
-        {
-            rootMargin: "500px 0px",
-            threshold: 0
+
+            // Tombol kembali normal
+            setTimeout(function () {
+
+                sendBlessing.disabled = false;
+                sendBlessing.textContent = "Send";
+
+            }, 1000);
+
         }
     );
 
-    blessingObserver.observe(shareBlessing);
-
 }
 
 
-/* =========================================
-   SEND BLESSING
-========================================= */
+// =========================================
+// LOAD CACHE + PRELOAD GOOGLE SHEETS
+// =========================================
 
-if (
-    sendBlessing &&
-    blessingName &&
-    blessingMessage &&
-    blessingList
-) {
-
-    sendBlessing.addEventListener("click", function () {
-
-        /* Cegah double click */
-        if (blessingSending) {
-            return;
-        }
-
-        const name = blessingName.value.trim();
-        const message = blessingMessage.value.trim();
+// Tampilkan komentar lama SECEPATNYA
+loadCachedBlessings();
 
 
-        /* =====================================
-           VALIDATION
-        ===================================== */
+// Request Google Sheets di background
+// Tidak menunggu user scroll
+setTimeout(function () {
 
-        if (!name || !message) {
+    loadBlessings();
 
-            alert("Please fill in your name and message.");
-
-            return;
-
-        }
-
-
-        blessingSending = true;
-
-
-        /* =====================================
-           BUAT KOMENTAR LANGSUNG DI LAYAR
-        ===================================== */
-
-        const card = document.createElement("div");
-        card.className = "blessing-card";
-
-        const nameElement = document.createElement("div");
-        nameElement.className = "blessing-name";
-        nameElement.textContent = name;
-
-        const messageElement = document.createElement("div");
-        messageElement.className = "blessing-message";
-        messageElement.textContent = message;
-
-        card.appendChild(nameElement);
-        card.appendChild(messageElement);
-
-
-        /*
-         * Komentar baru langsung muncul
-         * paling atas.
-         */
-
-        blessingList.prepend(card);
-
-
-        /* =====================================
-           KOSONGKAN FORM
-        ===================================== */
-
-        blessingName.value = "";
-        blessingMessage.value = "";
-
-
-        /* =====================================
-           BUTTON
-        ===================================== */
-
-        sendBlessing.disabled = true;
-        sendBlessing.textContent = "Sent!";
-
-
-        /* =====================================
-           KIRIM KE GOOGLE SHEETS
-           BERJALAN DI BACKGROUND
-        ===================================== */
-
-        fetch(scriptURL, {
-
-            method: "POST",
-
-            body: JSON.stringify({
-                name: name,
-                message: message
-            })
-
-        })
-
-        .then(function () {
-
-            console.log("Blessing berhasil dikirim.");
-
-            /*
-             * Tandai bahwa data server mungkin
-             * sudah berubah.
-             */
-
-            blessingsLoaded = false;
-
-        })
-
-        .catch(function (error) {
-
-            console.error("Error sending blessing:", error);
-
-        });
-
-
-        /* =====================================
-           KEMBALIKAN BUTTON
-        ===================================== */
-
-        setTimeout(function () {
-
-            sendBlessing.disabled = false;
-            sendBlessing.textContent = "Send";
-
-            blessingSending = false;
-
-        }, 1000);
-
-    });
-
-}
+}, 1000);
 
 
 /* =========================================
