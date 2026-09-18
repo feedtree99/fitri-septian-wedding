@@ -598,12 +598,15 @@ body {
     cursor: pointer;
     margin-bottom: 25px;
 }
-
 .bank-details {
     display: none;
     width: 100%;
     flex-direction: column;
     align-items: center;
+}
+
+.bank-details.show {
+    display: flex;
 }
 
 .bank-card {
@@ -621,36 +624,36 @@ body {
 }
 
 .bank-name {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 1px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 1px;
 }
 
 .account-number {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 0;
 }
 
 .account-holder {
-  font-size: 11px;
-  font-weight: 400;
-  margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 400;
+    margin-bottom: 10px;
 }
 
 .copy-account {
-  border: 1px solid #3b4c28;
-  background: #3b4c28;
-  color: #ecebe7;
-  padding: 7px 19px;
-  margin-bottom: 20px;
-  border-radius: 17px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.2px;
-  cursor: pointer;
+    border: 1px solid #3b4c28;
+    background: #3b4c28;
+    color: #ecebe7;
+    padding: 7px 19px;
+    margin-bottom: 20px;
+    border-radius: 17px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    cursor: pointer;
 }
 
 .gift-address {
@@ -658,13 +661,12 @@ body {
     text-align: center;
     color: #3b4c28;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
     padding: 10px 0;
 }
 
 .address-text {
     font-size: 10px;
-    line-height: 1.2;
+    line-height: 1.4;
     margin-bottom: 10px;
 }
 
