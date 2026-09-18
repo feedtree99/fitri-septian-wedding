@@ -39,65 +39,88 @@ const musicToggle = document.getElementById("musicToggle");
    OPEN INVITATION
 ========================================= */
 
-openButton.addEventListener("click", function () {
+if (openButton) {
 
-    invitation.style.display = "flex";
+    openButton.addEventListener("click", function () {
 
-    page3.style.display = "flex";
-    page5.style.display = "flex";
-    page6.style.display = "flex";
-    page7.style.display = "flex";
+        invitation.style.display = "flex";
 
-    weddingGift.style.display = "flex";
-    shareBlessing.style.display = "flex";
-    countdownSection.style.display = "flex";
-    thankYou.style.display = "flex";
+        if (page3) page3.style.display = "flex";
+        if (page5) page5.style.display = "flex";
+        if (page6) page6.style.display = "flex";
+        if (page7) page7.style.display = "flex";
+
+        if (weddingGift) weddingGift.style.display = "flex";
+        if (shareBlessing) shareBlessing.style.display = "flex";
+        if (countdownSection) countdownSection.style.display = "flex";
+        if (thankYou) thankYou.style.display = "flex";
 
 
-    /* VIDEO */
+        /* =====================================
+           VIDEO
+        ===================================== */
 
-    if (videoElement) {
+        if (videoElement) {
 
-        videoElement.currentTime = 0;
-        videoElement.playbackRate = 0.6;
-        videoElement.muted = true;
+            videoElement.currentTime = 0;
+            videoElement.playbackRate = 0.6;
+            videoElement.muted = true;
 
-        videoElement.setAttribute("muted", "");
-        videoElement.setAttribute("playsinline", "");
+            videoElement.setAttribute("muted", "");
+            videoElement.setAttribute("playsinline", "");
 
-        requestAnimationFrame(() => {
+            requestAnimationFrame(function () {
 
-            videoElement.play().catch(error => {
-                console.log("Video gagal autoplay:", error);
+                videoElement.play().catch(function (error) {
+                    console.log("Video gagal autoplay:", error);
+                });
+
             });
 
+        }
+
+
+        /* =====================================
+           MUSIC
+        ===================================== */
+
+        if (weddingMusic) {
+
+            weddingMusic.play().catch(function (error) {
+                console.log("Music gagal autoplay:", error);
+            });
+
+        }
+
+        if (musicToggle) {
+            musicToggle.classList.add("show");
+        }
+
+
+        /* =====================================
+           PRELOAD BLESSINGS
+           
+           Mulai ambil komentar setelah
+           invitation dibuka supaya saat user
+           sampai ke bawah, komentar sudah siap.
+        ===================================== */
+
+        setTimeout(function () {
+            loadBlessings();
+        }, 500);
+
+
+        /* =====================================
+           SCROLL
+        ===================================== */
+
+        invitation.scrollIntoView({
+            behavior: "smooth"
         });
 
-    }
-
-
-    /* MUSIC */
-
-    if (weddingMusic) {
-
-        weddingMusic.play().catch(error => {
-            console.log("Music gagal autoplay:", error);
-        });
-
-    }
-
-    if (musicToggle) {
-        musicToggle.classList.add("show");
-    }
-
-
-    /* SCROLL */
-
-    invitation.scrollIntoView({
-        behavior: "smooth"
     });
 
-});
+}
 
 
 /* =========================================
@@ -306,11 +329,13 @@ if (musicToggle && weddingMusic) {
         if (weddingMusic.paused) {
 
             weddingMusic.play();
+
             musicToggle.textContent = "♫";
 
         } else {
 
             weddingMusic.pause();
+
             musicToggle.textContent = "🔇";
 
         }
@@ -335,7 +360,7 @@ if (weddingVideo && videoElement) {
 
                     weddingVideo.style.display = "flex";
 
-                    videoElement.play().catch(error => {
+                    videoElement.play().catch(function (error) {
                         console.log("Video gagal autoplay:", error);
                     });
 
@@ -362,13 +387,17 @@ if (weddingVideo && videoElement) {
 
 function copyAccount(accountNumber, button) {
 
+    if (!button) return;
+
     navigator.clipboard.writeText(accountNumber)
         .then(function () {
 
             button.textContent = "Copied!";
 
             setTimeout(function () {
+
                 button.textContent = "Copy Account Number";
+
             }, 2000);
 
         })
@@ -418,13 +447,17 @@ function copyAddress(button) {
     const address =
         "Purinusaphala Blok N-21, RT 005/012, Kel. Jatiluhur, Kec. Jatiasih, Kota Bekasi, 17425";
 
+    if (!button) return;
+
     navigator.clipboard.writeText(address)
         .then(function () {
 
             button.textContent = "Copied!";
 
             setTimeout(function () {
+
                 button.textContent = "Copy Address";
+
             }, 2000);
 
         })
@@ -439,6 +472,7 @@ function copyAddress(button) {
 
 /* =========================================
    GOOGLE SHEETS
+   SHARE YOUR BLESSING
 ========================================= */
 
 const scriptURL =
@@ -451,6 +485,7 @@ const blessingList = document.getElementById("blessingList");
 
 let blessingsLoaded = false;
 let blessingsLoading = false;
+let blessingSending = false;
 
 
 /* =========================================
@@ -461,15 +496,27 @@ async function loadBlessings(forceReload = false) {
 
     if (!blessingList) return;
 
-    if (blessingsLoaded && !forceReload) return;
+    /* Jangan fetch berulang kalau sudah ada */
+    if (blessingsLoaded && !forceReload) {
+        return;
+    }
 
-    if (blessingsLoading) return;
+    /* Jangan menjalankan 2 request bersamaan */
+    if (blessingsLoading) {
+        return;
+    }
 
     blessingsLoading = true;
 
     try {
 
-        const response = await fetch(scriptURL);
+        const response = await fetch(
+            scriptURL,
+            {
+                method: "GET",
+                cache: "no-store"
+            }
+        );
 
         if (!response.ok) {
             throw new Error("Failed to load blessings");
@@ -477,27 +524,50 @@ async function loadBlessings(forceReload = false) {
 
         const data = await response.json();
 
+
+        /*
+         * Buat semua card terlebih dahulu.
+         * Jadi komentar lama tidak langsung
+         * dihapus ketika request sedang berjalan.
+         */
+
+        const fragment = document.createDocumentFragment();
+
+        if (Array.isArray(data)) {
+
+            data
+                .slice()
+                .reverse()
+                .forEach(function (blessing) {
+
+                    const card = document.createElement("div");
+                    card.className = "blessing-card";
+
+                    const name = document.createElement("div");
+                    name.className = "blessing-name";
+                    name.textContent = blessing.name || "";
+
+                    const message = document.createElement("div");
+                    message.className = "blessing-message";
+                    message.textContent = blessing.message || "";
+
+                    card.appendChild(name);
+                    card.appendChild(message);
+
+                    fragment.appendChild(card);
+
+                });
+
+        }
+
+
+        /*
+         * Baru replace isi setelah data
+         * berhasil diterima.
+         */
+
         blessingList.innerHTML = "";
-
-        data.reverse().forEach(function (blessing) {
-
-            const card = document.createElement("div");
-            card.className = "blessing-card";
-
-            const name = document.createElement("div");
-            name.className = "blessing-name";
-            name.textContent = blessing.name;
-
-            const message = document.createElement("div");
-            message.className = "blessing-message";
-            message.textContent = blessing.message;
-
-            card.appendChild(name);
-            card.appendChild(message);
-
-            blessingList.appendChild(card);
-
-        });
+        blessingList.appendChild(fragment);
 
         blessingsLoaded = true;
 
@@ -515,7 +585,7 @@ async function loadBlessings(forceReload = false) {
 
 
 /* =========================================
-   LAZY LOAD BLESSINGS
+   PRELOAD BLESSINGS
 ========================================= */
 
 if (shareBlessing) {
@@ -537,7 +607,7 @@ if (shareBlessing) {
 
         },
         {
-            rootMargin: "300px 0px",
+            rootMargin: "500px 0px",
             threshold: 0
         }
     );
@@ -551,61 +621,131 @@ if (shareBlessing) {
    SEND BLESSING
 ========================================= */
 
-if (sendBlessing) {
+if (
+    sendBlessing &&
+    blessingName &&
+    blessingMessage &&
+    blessingList
+) {
 
-    sendBlessing.addEventListener("click", async function () {
+    sendBlessing.addEventListener("click", function () {
+
+        /* Cegah double click */
+        if (blessingSending) {
+            return;
+        }
 
         const name = blessingName.value.trim();
         const message = blessingMessage.value.trim();
 
+
+        /* =====================================
+           VALIDATION
+        ===================================== */
+
         if (!name || !message) {
 
             alert("Please fill in your name and message.");
+
             return;
 
         }
 
+
+        blessingSending = true;
+
+
+        /* =====================================
+           BUAT KOMENTAR LANGSUNG DI LAYAR
+        ===================================== */
+
+        const card = document.createElement("div");
+        card.className = "blessing-card";
+
+        const nameElement = document.createElement("div");
+        nameElement.className = "blessing-name";
+        nameElement.textContent = name;
+
+        const messageElement = document.createElement("div");
+        messageElement.className = "blessing-message";
+        messageElement.textContent = message;
+
+        card.appendChild(nameElement);
+        card.appendChild(messageElement);
+
+
+        /*
+         * Komentar baru langsung muncul
+         * paling atas.
+         */
+
+        blessingList.prepend(card);
+
+
+        /* =====================================
+           KOSONGKAN FORM
+        ===================================== */
+
+        blessingName.value = "";
+        blessingMessage.value = "";
+
+
+        /* =====================================
+           BUTTON
+        ===================================== */
+
         sendBlessing.disabled = true;
-        sendBlessing.textContent = "Sending...";
+        sendBlessing.textContent = "Sent!";
 
 
-        try {
+        /* =====================================
+           KIRIM KE GOOGLE SHEETS
+           BERJALAN DI BACKGROUND
+        ===================================== */
 
-            await fetch(scriptURL, {
+        fetch(scriptURL, {
 
-                method: "POST",
+            method: "POST",
 
-                body: JSON.stringify({
-                    name: name,
-                    message: message
-                })
+            body: JSON.stringify({
+                name: name,
+                message: message
+            })
 
-            });
+        })
 
+        .then(function () {
 
-            /* CLEAR FORM */
+            console.log("Blessing berhasil dikirim.");
 
-            blessingName.value = "";
-            blessingMessage.value = "";
-
-
-            /* UPDATE LIST */
+            /*
+             * Tandai bahwa data server mungkin
+             * sudah berubah.
+             */
 
             blessingsLoaded = false;
 
-            await loadBlessings(true);
+        })
 
-
-        } catch (error) {
+        .catch(function (error) {
 
             console.error("Error sending blessing:", error);
 
-        } finally {
+        });
+
+
+        /* =====================================
+           KEMBALIKAN BUTTON
+        ===================================== */
+
+        setTimeout(function () {
 
             sendBlessing.disabled = false;
             sendBlessing.textContent = "Send";
 
-        }
+            blessingSending = false;
+
+        }, 1000);
 
     });
 
@@ -619,13 +759,24 @@ if (sendBlessing) {
 const countdownDate =
     new Date(2026, 11, 13, 0, 0, 0).getTime();
 
-const countdownDays = document.getElementById("countdownDays");
-const countdownHours = document.getElementById("countdownHours");
+const countdownDays =
+    document.getElementById("countdownDays");
+
+const countdownHours =
+    document.getElementById("countdownHours");
+
 
 function updateCountdown() {
 
+    if (!countdownDays || !countdownHours) {
+        return;
+    }
+
     const now = Date.now();
-    const distance = countdownDate - now;
+
+    const distance =
+        countdownDate - now;
+
 
     if (distance <= 0) {
 
@@ -636,14 +787,19 @@ function updateCountdown() {
 
     }
 
+
     const days = Math.floor(
-        distance / (1000 * 60 * 60 * 24)
+        distance /
+        (1000 * 60 * 60 * 24)
     );
 
+
     const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) /
+        (distance %
+            (1000 * 60 * 60 * 24)) /
         (1000 * 60 * 60)
     );
+
 
     countdownDays.textContent =
         String(days).padStart(2, "0");
@@ -652,6 +808,7 @@ function updateCountdown() {
         String(hours).padStart(2, "0");
 
 }
+
 
 updateCountdown();
 
