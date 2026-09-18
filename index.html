@@ -125,25 +125,49 @@
 
     <img src="images/wedding-gift.png" class="wedding-gift-image" alt="Wedding Gift">
 
-    <div class="bank-card">
-    <div class="bank-name">BCA</div>
-    <div class="account-number">7370565079</div>
-    <div class="account-holder">a/n Septian Nudin</div>
-
-    <button class="copy-account" onclick="copyAccount('7370565079', this)">
-        Copy Account Number
+    <!-- BUTTON -->
+    <button class="gift-button" onclick="toggleGift()">
+        Click Here
     </button>
+
+    <!-- BANK DETAILS -->
+    <div class="bank-details" id="bankDetails">
+
+        <div class="bank-card">
+            <div class="bank-name">BCA</div>
+            <div class="account-number">7370565079</div>
+            <div class="account-holder">a/n Septian Nudin</div>
+
+            <button class="copy-account" onclick="copyAccount('7370565079', this)">
+                Copy Account Number
+            </button>
+        </div>
+
+        <div class="bank-card">
+            <div class="bank-name">GoPay / ShopeePay</div>
+            <div class="account-number">081906086754</div>
+            <div class="account-holder">a/n Fitri Wulandari</div>
+
+            <button class="copy-account" onclick="copyAccount('081906086754', this)">
+                Copy Number
+            </button>
+        </div>
+
+        <div class="gift-address">
+            <div class="bank-name">Alamat Pengiriman</div>
+
+        <div class="address-text">
+            Purinusaphala Blok N-21, RT 005/012,<br>
+            Kel. Jatiluhur, Kec. Jatiasih,Kota Bekasi, 17425 <br>
+            Ditujukan kepada Fitri Wulandari
+        </div>
+
+        <button class="copy-account" onclick="copyAddress(this)">
+            Copy Address
+        </button>
 </div>
 
-<div class="bank-card">
-    <div class="bank-name">GoPay / ShopeePay</div>
-    <div class="account-number">081906086754</div>
-    <div class="account-holder">a/n Fitri Wulandari</div>
-
-    <button class="copy-account" onclick="copyAccount('081906086754', this)">
-        Copy Number
-    </button>
-</div>
+    </div>
 
 </section>
 

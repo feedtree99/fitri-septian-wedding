@@ -581,10 +581,30 @@ body {
     box-sizing: border-box;
 }
 .wedding-gift-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 30px;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    margin: 0 auto 0px;
+}
+
+.gift-button {
+    padding: 10px 24px;
+    border: 1px solid #3b4c28;
+    border-radius: 30px;
+    background: #3b4c28;
+    color: #ecebe7;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.bank-details {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
 }
 
 .bank-card {
@@ -634,6 +654,21 @@ body {
   cursor: pointer;
 }
 
+.gift-address {
+    width: 100%;
+    text-align: center;
+    color: #3b4c28;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    padding: 10px 0;
+}
+
+.address-text {
+    font-size: 10px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
 /* =========================================
    SHARE YOUR BLESSING
    ========================================= */
@@ -662,6 +697,7 @@ body {
 
 .share-blessing-image {
     width: 100%;
+    max-width: 600px;
     height: auto;
     display: block;
     margin-bottom: 10px;
@@ -981,23 +1017,12 @@ body {
         height: auto;
     }
 
-    .wedding-gift {
-        padding: 0px 0px 0px;
-    }
-
-    .wedding-gift-image {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .bank-card {
-        width: 100%;
-    }
 
     @media (max-width: 600px) {
 
     .blessing-image {
         width: 100%;
+        
        
     }
 

@@ -199,6 +199,19 @@ function copyAccount(accountNumber, button) {
     }, 2000);
 }
 
+function toggleGift() {
+    const bankDetails = document.getElementById("bankDetails");
+    const giftButton = document.querySelector(".gift-button");
+
+    if (bankDetails.style.display === "flex") {
+        bankDetails.style.display = "none";
+        giftButton.textContent = "Click Here";
+    } else {
+        bankDetails.style.display = "flex";
+        giftButton.textContent = "Close";
+    }
+}
+
 // GOOGLE SHEETS
 const scriptURL = "https://script.google.com/macros/s/AKfycbyaGL0lcUflYG03GurcNJQoXl66DAo18IM7bHI3lIRWcKHaZzRGpNY3UftGatUcyZ-y/exec";
 
