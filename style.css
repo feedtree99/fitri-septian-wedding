@@ -19,7 +19,7 @@ body {
 ================================= */
 
 .opening {
-    width: min(100%, 890px);
+    width: 100%;
 
     min-height: 180svh;
 
@@ -55,6 +55,7 @@ body {
 }
 .opening-content img {
     width: 100%;
+    max-width: 600px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -471,6 +472,7 @@ body {
 
 .page6-dresscode {
     width: 100%;
+    max-width:600px;
     height: auto;
     display: block;
 
@@ -696,7 +698,7 @@ body {
 }
 
 .share-blessing-image {
-    width: 100%;
+    width: 120%;
     max-width: 600px;
     height: auto;
     display: block;
@@ -823,7 +825,7 @@ body {
 
 .countdown-title {
     font-family: "Helvetica Neue Bold", Arial, sans-serif;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 0;
     color: #3b4c28;
@@ -847,8 +849,8 @@ body {
     display: block;
 
     font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 30px;
-    font-weight: 400;
+    font-size: 60px;
+    font-weight: 500;
     line-height: 1;
 
     color: #3b4c28;
@@ -889,6 +891,7 @@ body {
 
 .thank-you-image {
     width: 100%;
+    max-width: 600px;
     height: auto;
     display: block;
 

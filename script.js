@@ -359,3 +359,17 @@ const thankYouObserver = new IntersectionObserver(
 );
 
 thankYouObserver.observe(thankYou);
+
+function copyAddress(button) {
+
+    const address =
+        "Purinusaphala Blok N-21, RT 005/012, Kel. Jatiluhur, Kec. Jatiasih, Kota Bekasi, 17425";
+
+    navigator.clipboard.writeText(address);
+
+    button.textContent = "Copied!";
+
+    setTimeout(function () {
+        button.textContent = "Copy Address";
+    }, 2000);
+}
