@@ -946,95 +946,212 @@ body {
     }
 }
 
-
-/* ================================
-   MOBILE FINAL OVERRIDE
-================================ */
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
 
 @media (max-width: 767px) {
 
-    .opening {
-        min-height: 100svh;
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
 
+    /* =====================================
+       OPENING
+    ===================================== */
+
+    .opening {
+        width: 100%;
+        max-width: 100%;
+        min-height: 100svh;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     .opening-content {
+        width: 100%;
+        max-width: 100%;
         min-height: 100svh;
+        padding: 5px;
+        box-sizing: border-box;
+
         justify-content: center;
+    }
+
+    .opening-content img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
     }
 
     .opening-bottom {
         margin-top: 30px;
     }
 
+
+    /* =====================================
+       PAGE 2
+    ===================================== */
+
     .page2 {
+        width: 100%;
         min-height: 0;
-        padding: 0px;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     .page2 img {
         width: 100%;
+        max-width: 500px;
+        height: auto;
     }
-    
+
+
+    /* =====================================
+       PAGE 3
+    ===================================== */
 
     .page3 {
+        width: 100%;
         min-height: 0;
-        padding: 0px;
-
+        padding: 0;
+        box-sizing: border-box;
     }
 
+    .page3 img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+
+
+    /* =====================================
+       COUPLE
+    ===================================== */
+
     .couple {
+        width: 100%;
         min-height: 0;
-        padding: 0px;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     .couple img {
         width: 100%;
         max-width: 500px;
+        height: auto;
     }
+
+
+    /* =====================================
+       PAGE 5
+    ===================================== */
 
     .page5 {
+        width: 100%;
         min-height: 0;
-        padding: 40px 0px;
+        padding: 40px 0;
+        box-sizing: border-box;
     }
 
-        .page6 {
+
+    /* =====================================
+       PAGE 6
+    ===================================== */
+
+    .page6 {
+        width: 100%;
         min-height: auto;
         padding: 0;
+        box-sizing: border-box;
     }
 
     .page6-dresscode {
         width: 100%;
+        max-width: 600px;
+        height: auto;
     }
 
+
+    /* =====================================
+       WEDDING VIDEO
+    ===================================== */
+
     .wedding-video {
-        padding: 0px 0;
+        width: 100%;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     .wedding-video video {
         width: 100%;
         max-width: none;
         height: auto;
+        display: block;
     }
 
 
-    @media (max-width: 600px) {
+    /* =====================================
+       WEDDING GIFT
+    ===================================== */
+
+    .wedding-gift {
+        width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .wedding-gift-image {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        display: block;
+        margin: 0 auto 10px;
+    }
+
+    .bank-card {
+        width: 100%;
+        max-width: 500px;
+        box-sizing: border-box;
+    }
+
+
+    /* =====================================
+       SHARE BLESSING
+    ===================================== */
+
+    .share-blessing {
+        width: 100%;
+        box-sizing: border-box;
+    }
 
     .blessing-image {
         width: 100%;
-        
-       
+        max-width: 500px;
+        height: auto;
     }
 
-        .blessing-form {
+    .blessing-form {
         width: 75%;
         max-width: 330px;
-        padding: 10px 10px 10px;
+        padding: 10px;
         border-radius: 8px;
+        box-sizing: border-box;
     }
 
     .blessing-form input,
     .blessing-form textarea {
+        width: 100%;
+        box-sizing: border-box;
+
         font-size: 12px;
         padding: 8px 5px;
         margin-bottom: 12px;
@@ -1046,64 +1163,101 @@ body {
     }
 
     .send-blessing {
+        width: 100%;
         padding: 11px;
         font-size: 12px;
     }
-}
-.countdown-section {
-    padding: 0px 0px 0px;
+
+
+    /* =====================================
+       COUNTDOWN
+    ===================================== */
+
+    .countdown-section {
+        width: 100%;
+        padding: 25px 0 30px;
+        box-sizing: border-box;
+    }
+
+    .countdown-title {
+        font-size: 12px;
+        margin-bottom: 18px;
+    }
+
+    .countdown-item {
+        min-width: 75px;
+    }
+
+    .countdown-item span {
+        font-size: 27px;
+        margin-bottom: 6px;
+    }
+
+    .countdown-item small {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .countdown-divider {
+        height: 32px;
+    }
+
+
+    /* =====================================
+       THANK YOU
+    ===================================== */
+
+    .thank-you {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .thank-you-image {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        display: block;
+    }
+
+    .swipe-up {
+        bottom: 25px;
+        font-size: 8px;
+        letter-spacing: 3px;
+    }
+
+    .swipe-arrow {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
 }
 
-.countdown-title {
-    font-size: 12px;
-    margin-bottom: 18px;
-}
-
-.countdown-item {
-    min-width: 75px;
-}
-
-.countdown-item span {
-    font-size: 27px;
-    margin-bottom: 6px;
-}
-
-.countdown-item small {
-    font-size: 8px;
-    letter-spacing: 1px;
-}
-
-.countdown-divider {
-    height: 32px;
-}
 
 /* =========================================
-   THANK YOU - MOBILE
+   SMALL MOBILE
+   <= 600px
 ========================================= */
 
-.thank-you {
-    width: 100%;
-}
+@media (max-width: 600px) {
 
-.thank-you-image {
-    width: 100%;
-    height: auto;
-}
+    .blessing-form {
+        width: 75%;
+        max-width: 330px;
+    }
 
-.swipe-up {
-    bottom: 25px;
-    font-size: 8px;
-    letter-spacing: 3px;
-}
-
-.swipe-arrow {
-    font-size: 20px;
-    margin-bottom: 8px;
-}
+    .blessing-form input,
+    .blessing-form textarea {
+        font-size: 12px;
+    }
 
 }
+
+
+/* =========================================
+   DARK MODE
+========================================= */
 
 @media (prefers-color-scheme: dark) {
+
     html,
     body,
     .page2,
