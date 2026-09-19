@@ -52,10 +52,11 @@ if (openButton) {
         if (page6) page6.style.display = "flex";
         if (page7) page7.style.display = "flex";
 
-        if (weddingGift) weddingGift.style.display = "flex";
-        if (shareBlessing) shareBlessing.style.display = "flex";
-        if (countdownSection) countdownSection.style.display = "flex";
-        if (thankYou) thankYou.style.display = "flex";
+            if (weddingVideo) weddingVideo.style.display = "flex";
+            if (weddingGift) weddingGift.style.display = "flex";
+            if (shareBlessing) shareBlessing.style.display = "flex";
+            if (countdownSection) countdownSection.style.display = "flex";
+            if (thankYou) thankYou.style.display = "flex";
 
 
         /* =====================================
