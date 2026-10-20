@@ -1,3 +1,21 @@
+// NAMA TAMU DI COVER
+function setGuestNameFromLink() {
+    const guestParams = new URLSearchParams(window.location.search);
+    const guestNameFromLink = guestParams.get("to");
+    const guestNameTarget = document.getElementById("guestName");
+
+    if (guestNameTarget && guestNameFromLink) {
+        guestNameTarget.textContent = guestNameFromLink;
+    }
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setGuestNameFromLink);
+} else {
+    setGuestNameFromLink();
+}
+
+
 /* =========================================
    ELEMENTS
 ========================================= */
